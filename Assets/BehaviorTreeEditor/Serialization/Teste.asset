@@ -1,0 +1,339 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe99de081b0f89c40b6b01a1fa09049c, type: 3}
+  m_Name: Teste
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: treeData
+      Entry: 7
+      Data: 0|BehaviorTreeEditor.Runtime.Data.TreeData, Assembly-CSharp
+    - Name: treeName
+      Entry: 1
+      Data: New Behavior Tree
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: rootNodeGuid
+      Entry: 1
+      Data: 7efb806c-f17b-4551-aca4-b334b0d29dc4
+    - Name: allNodes
+      Entry: 7
+      Data: 1|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[BehaviorTreeEditor.Runtime.Data.NodeData,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 2|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: 7efb806c-f17b-4551-aca4-b334b0d29dc4
+    - Name: $v
+      Entry: 7
+      Data: 3|BehaviorTreeEditor.Runtime.Data.NodeData, Assembly-CSharp
+    - Name: guid
+      Entry: 1
+      Data: 7efb806c-f17b-4551-aca4-b334b0d29dc4
+    - Name: nodeType
+      Entry: 3
+      Data: 0
+    - Name: nodeName
+      Entry: 1
+      Data: Root
+    - Name: nodeClassName
+      Entry: 1
+      Data: RootNode
+    - Name: position
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 168
+    - Name: 
+      Entry: 4
+      Data: -281
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: childrenGuids
+      Entry: 7
+      Data: 4|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: fcc83ce8-c474-44c3-ba3d-094a3d64bbda
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: parentGuid
+      Entry: 6
+      Data: 
+    - Name: nodeState
+      Entry: 3
+      Data: 0
+    - Name: abortType
+      Entry: 3
+      Data: 0
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: customDataJson
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: fcc83ce8-c474-44c3-ba3d-094a3d64bbda
+    - Name: $v
+      Entry: 7
+      Data: 5|BehaviorTreeEditor.Runtime.Data.NodeData, Assembly-CSharp
+    - Name: guid
+      Entry: 1
+      Data: fcc83ce8-c474-44c3-ba3d-094a3d64bbda
+    - Name: nodeType
+      Entry: 3
+      Data: 1
+    - Name: nodeName
+      Entry: 1
+      Data: Selector
+    - Name: nodeClassName
+      Entry: 1
+      Data: SelectorNode
+    - Name: position
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 137.5
+    - Name: 
+      Entry: 4
+      Data: -104.5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: childrenGuids
+      Entry: 7
+      Data: 6|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 6b176797-6cc4-4aa7-997f-ad614fd034a6
+    - Name: 
+      Entry: 1
+      Data: 99b27487-7d09-4cb4-bb70-d289d893456e
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: parentGuid
+      Entry: 1
+      Data: 7efb806c-f17b-4551-aca4-b334b0d29dc4
+    - Name: nodeState
+      Entry: 3
+      Data: 0
+    - Name: abortType
+      Entry: 3
+      Data: 0
+    - Name: description
+      Entry: 1
+      Data: "\u9009\u62E9\u6267\u884C\u5B50\u8282\u70B9\uFF0C\u4EFB\u4E00\u6210\u529F\u5373\u8FD4\u56DESuccess"
+    - Name: customDataJson
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: 99b27487-7d09-4cb4-bb70-d289d893456e
+    - Name: $v
+      Entry: 7
+      Data: 7|BehaviorTreeEditor.Runtime.Data.NodeData, Assembly-CSharp
+    - Name: guid
+      Entry: 1
+      Data: 99b27487-7d09-4cb4-bb70-d289d893456e
+    - Name: nodeType
+      Entry: 3
+      Data: 3
+    - Name: nodeName
+      Entry: 1
+      Data: Log
+    - Name: nodeClassName
+      Entry: 1
+      Data: LogNode
+    - Name: position
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 307
+    - Name: 
+      Entry: 4
+      Data: 68
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: childrenGuids
+      Entry: 7
+      Data: 8|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: parentGuid
+      Entry: 1
+      Data: fcc83ce8-c474-44c3-ba3d-094a3d64bbda
+    - Name: nodeState
+      Entry: 3
+      Data: 0
+    - Name: abortType
+      Entry: 3
+      Data: 0
+    - Name: description
+      Entry: 1
+      Data: "\u8F93\u51FA\u65E5\u5FD7\u4FE1\u606F\u5230Console"
+    - Name: customDataJson
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: 6b176797-6cc4-4aa7-997f-ad614fd034a6
+    - Name: $v
+      Entry: 7
+      Data: 9|BehaviorTreeEditor.Runtime.Data.NodeData, Assembly-CSharp
+    - Name: guid
+      Entry: 1
+      Data: 6b176797-6cc4-4aa7-997f-ad614fd034a6
+    - Name: nodeType
+      Entry: 3
+      Data: 3
+    - Name: nodeName
+      Entry: 1
+      Data: Wait
+    - Name: nodeClassName
+      Entry: 1
+      Data: WaitNode
+    - Name: position
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: -1
+    - Name: 
+      Entry: 4
+      Data: 68
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: childrenGuids
+      Entry: 7
+      Data: 10|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: parentGuid
+      Entry: 1
+      Data: fcc83ce8-c474-44c3-ba3d-094a3d64bbda
+    - Name: nodeState
+      Entry: 3
+      Data: 0
+    - Name: abortType
+      Entry: 3
+      Data: 0
+    - Name: description
+      Entry: 1
+      Data: "\u7B49\u5F85\u6307\u5B9A\u79D2\u6570"
+    - Name: customDataJson
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: createTime
+      Entry: 1
+      Data: 2025-12-16 17:30:34
+    - Name: lastModifyTime
+      Entry: 1
+      Data: 2025-12-16 17:31:15
+    - Name: 
+      Entry: 8
+      Data: 
+  blackboardData:
+    variables: []
