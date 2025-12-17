@@ -13,13 +13,13 @@ using BehaviorTreeEditor.Editor.Core;
 namespace BehaviorTreeEditor.Editor.Nodes.Generated
 {
     /// <summary>
-    /// Wait 节点视图
-    /// 等待指定秒数
+    /// Jump 节点视图
+    /// 跳跃
     /// </summary>
-    public class WaitNodeView : ActionNodeView
+    public class JumpNodeView : ActionNodeView
     {
-        public const string NodeTypeName = "WaitNode";
-        public const string NodeDisplayName = "Wait";
+        public const string NodeTypeName = "JumpNode";
+        public const string NodeDisplayName = "Jump";
         public const string NodeCategory = "Actions";
 
         protected override void CreateContent()
@@ -27,11 +27,11 @@ namespace BehaviorTreeEditor.Editor.Nodes.Generated
             base.CreateContent();
 
             // 设置节点标题
-            title = "Wait";
+            title = "Jump";
 
 
             // 添加节点描述
-            var descLabel = new Label("等待指定秒数");
+            var descLabel = new Label("跳跃");
             descLabel.style.fontSize = 10;
             descLabel.style.color = new Color(0.6f, 0.6f, 0.6f);
             descLabel.style.whiteSpace = WhiteSpace.Normal;

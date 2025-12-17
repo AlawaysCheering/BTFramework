@@ -93,35 +93,65 @@ namespace BehaviorTreeEditor.Editor.Core
 
             var mousePos = evt.localMousePosition;
 
-            // 组合节点
-            evt.menu.AppendAction("创建节点/组合节点/Sequence", 
-                _ => CreateNode<Runtime.Nodes.Composites.SequenceNode>(mousePos));
-            evt.menu.AppendAction("创建节点/组合节点/Selector", 
-                _ => CreateNode<Runtime.Nodes.Composites.SelectorNode>(mousePos));
-            evt.menu.AppendAction("创建节点/组合节点/Parallel", 
-                _ => CreateNode<Runtime.Nodes.Composites.ParallelNode>(mousePos));
+            // 动态生成节点创建菜单
+            var categorizedNodes = new Dictionary<string, List<(Type type, BTNodeAttribute attr)>>();
 
-            // 装饰节点
-            evt.menu.AppendAction("创建节点/装饰节点/Repeater", 
-                _ => CreateNode<Runtime.Nodes.Decorators.RepeaterNode>(mousePos));
-            evt.menu.AppendAction("创建节点/装饰节点/Inverter", 
-                _ => CreateNode<Runtime.Nodes.Decorators.InverterNode>(mousePos));
-            evt.menu.AppendAction("创建节点/装饰节点/ConditionalAbort", 
-                _ => CreateNode<Runtime.Nodes.Decorators.ConditionalAbortNode>(mousePos));
+            // 按类别分组
+            foreach (var kvp in nodeCreators)
+            {
+                var attr = (BTNodeAttribute)kvp.Key.GetCustomAttributes(typeof(BTNodeAttribute), false)[0];
+                var category = GetCategoryDisplayName(attr.Category);
+                
+                if (!categorizedNodes.ContainsKey(category))
+                    categorizedNodes[category] = new List<(Type, BTNodeAttribute)>();
+                
+                categorizedNodes[category].Add((kvp.Key, attr));
+            }
 
-            // 动作节点
-            evt.menu.AppendAction("创建节点/动作节点/Wait", 
-                _ => CreateNode<Runtime.Nodes.Actions.WaitNode>(mousePos));
-            evt.menu.AppendAction("创建节点/动作节点/Log", 
-                _ => CreateNode<Runtime.Nodes.Actions.LogNode>(mousePos));
+            // 按类别名称排序
+            var sortedCategories = categorizedNodes.Keys.OrderBy(k => k).ToList();
 
-            // 条件节点
-            evt.menu.AppendAction("创建节点/条件节点/CheckBlackboard", 
-                _ => CreateNode<Runtime.Nodes.Conditions.CheckBlackboardNode>(mousePos));
+            // 生成菜单项
+            foreach (var category in sortedCategories)
+            {
+                var nodesInCategory = categorizedNodes[category].OrderBy(n => n.attr.DisplayName).ToList();
+                
+                foreach (var (nodeType, attr) in nodesInCategory)
+                {
+                    var menuPath = $"创建节点/{category}/{attr.DisplayName}";
+                    evt.menu.AppendAction(menuPath, 
+                        _ => CreateNodeByType(nodeType, mousePos),
+                        _ => DropdownMenuAction.Status.Normal);
+                }
+            }
 
             evt.menu.AppendSeparator();
             evt.menu.AppendAction("全选", _ => SelectAll());
             evt.menu.AppendAction("删除选中", _ => DeleteSelection());
+        }
+
+        private string GetCategoryDisplayName(string category)
+        {
+            // 将内部类别名称转换为友好的显示名称
+            var categoryMap = new Dictionary<string, string>
+            {
+                { "Composite", "组合节点" },
+                { "Decorator", "装饰节点" },
+                { "Condition", "条件节点" },
+                { "Action", "动作节点" }
+            };
+            
+            return categoryMap.TryGetValue(category, out var displayName) ? displayName : category;
+        }
+
+        private void CreateNodeByType(Type nodeType, Vector2 position)
+        {
+            if (nodeCreators.TryGetValue(nodeType, out var creator))
+            {
+                var nodeView = creator(position);
+                AddNodeView(nodeView, false);
+                editorWindow.MarkUnsavedChanges();
+            }
         }
 
         /// <summary>
