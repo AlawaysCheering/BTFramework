@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System.Reflection;
 
 namespace BehaviorTreeEditor.Runtime.Data
 {
@@ -56,9 +57,13 @@ namespace BehaviorTreeEditor.Runtime.Data
         [LabelText("节点名称")]
         public string nodeName;
 
-        [LabelText("节点完整类型名")]
+        [LabelText("节点类名")]
         [ReadOnly]
         public string nodeClassName;
+
+        [LabelText("节点Type")]
+        [ReadOnly]
+        public Type nodeClassType;
 
         [LabelText("编辑器位置")]
         [ReadOnly]
@@ -84,24 +89,177 @@ namespace BehaviorTreeEditor.Runtime.Data
         [TextArea(2, 4)]
         public string description;
 
-        [LabelText("自定义数据(JSON)")]
-        [TextArea(3, 6)]
-        public string customDataJson;
+        [LabelText("配置数据")]
+        public BlackboardData customData = new BlackboardData();
+
+         /// <summary>
+        /// 根据节点类型自动初始化自定义数据
+        /// </summary>
+        public void InitCustomDataByNodeType()
+        {
+            if (string.IsNullOrEmpty(nodeClassName))
+                return;
+
+            customData.Clear();
+
+            // 尝试获取节点类型
+            Type nodeType = nodeClassType;
+            if (nodeType == null)
+            {
+                Debug.LogWarning($"[NodeData] Cannot find node type: {nodeClassName}");
+                return;
+            }
+
+            // 获取所有公共字段
+            FieldInfo[] fields = nodeType.GetFields(BindingFlags.Public | BindingFlags.Instance);
+            
+            foreach (FieldInfo field in fields)
+            {
+                // 跳过某些不需要的字段（如继承的字段或特殊字段）
+                if (ShouldSkipField(field))
+                    continue;
+
+                // 将字段类型映射到黑板变量类型
+                BlackboardValueType? valueType = MapFieldTypeToBlackboardType(field.FieldType);
+                if (valueType.HasValue)
+                {
+                    // 添加变量到黑板数据
+                    customData.AddVariable(field.Name, valueType.Value);
+                    
+                    // 设置默认值
+                    SetDefaultValue(field.Name, field.FieldType);
+                }
+            }
+
+            Debug.Log($"[NodeData] Initialized {customData.variables.Count} variables for node: {nodeClassName}");
+        }
+        /// <summary>
+        /// 判断是否应该跳过该字段
+        /// </summary>
+        private bool ShouldSkipField(FieldInfo field)
+        {
+            // 跳过编译器生成的字段、只读字段、常量等
+            if (field.IsInitOnly || field.IsLiteral)
+                return true;
+
+            // 跳过某些特定名称的字段
+            string[] skipFields = { "children", "parent", "state", "guid", "position" };
+            if (Array.Exists(skipFields, name => string.Equals(name, field.Name, StringComparison.OrdinalIgnoreCase)))
+                return true;
+
+            // 跳过某些特定类型的字段（如委托、事件等）
+            if (field.FieldType.IsSubclassOf(typeof(Delegate)) || 
+                field.FieldType.Name.Contains("EventHandler"))
+                return true;
+
+            return false;
+        }
+        /// <summary>
+        /// 获取节点类型
+        /// </summary>
+        private Type GetNodeType()
+        {
+            // 尝试在当前程序集查找
+            Type type = Type.GetType($"BehaviorTreeEditor.Runtime.Nodes.{nodeClassName}");
+            if (type != null)
+                return type;
+
+            // 如果找不到，尝试在所有加载的程序集中查找
+            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                type = assembly.GetType(nodeClassName) ?? assembly.GetType($"BehaviorTreeEditor.Runtime.Nodes.{nodeClassName}");
+                if (type != null)
+                    return type;
+            }
+
+            return null;
+        }
+         /// <summary>
+        /// 将字段类型映射到黑板变量类型
+        /// </summary>
+        private BlackboardValueType? MapFieldTypeToBlackboardType(Type fieldType)
+        {
+            if (fieldType == typeof(int)) return BlackboardValueType.Int;
+            if (fieldType == typeof(float)) return BlackboardValueType.Float;
+            if (fieldType == typeof(bool)) return BlackboardValueType.Bool;
+            if (fieldType == typeof(string)) return BlackboardValueType.String;
+            if (fieldType == typeof(Vector2)) return BlackboardValueType.Vector2;
+            if (fieldType == typeof(Vector3)) return BlackboardValueType.Vector3;
+            if (fieldType == typeof(GameObject)) return BlackboardValueType.GameObject;
+            if (fieldType == typeof(Transform)) return BlackboardValueType.Transform;
+            if (typeof(UnityEngine.Object).IsAssignableFrom(fieldType)) return BlackboardValueType.Object;
+
+            // 处理可空类型
+            if (fieldType.IsGenericType && fieldType.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                Type underlyingType = Nullable.GetUnderlyingType(fieldType);
+                return MapFieldTypeToBlackboardType(underlyingType);
+            }
+
+            // 处理枚举类型（映射为int）
+            if (fieldType.IsEnum)
+                return BlackboardValueType.Int;
+
+            Debug.LogWarning($"[NodeData] Unsupported field type: {fieldType.Name} for blackboard variable");
+            return null;
+        }
 
         /// <summary>
-        /// 创建新节点数据
+        /// 设置字段的默认值
         /// </summary>
-        public static NodeData Create(NodeType type, string className, Vector2 pos)
+        private void SetDefaultValue(string fieldName, Type fieldType)
         {
-            return new NodeData
+            object defaultValue = GetDefaultValueForType(fieldType);
+            if (defaultValue != null)
+            {
+                // 使用反射调用泛型方法
+                MethodInfo method = typeof(BlackboardData).GetMethod("SetValue");
+                MethodInfo genericMethod = method.MakeGenericMethod(fieldType);
+                genericMethod.Invoke(customData, new object[] { fieldName, defaultValue });
+            }
+        }
+
+        /// <summary>
+        /// 获取类型的默认值
+        /// </summary>
+        private object GetDefaultValueForType(Type type)
+        {
+            if (type == typeof(int)) return 0;
+            if (type == typeof(float)) return 0f;
+            if (type == typeof(bool)) return false;
+            if (type == typeof(string)) return string.Empty;
+            if (type == typeof(Vector2)) return Vector2.zero;
+            if (type == typeof(Vector3)) return Vector3.zero;
+            if (type.IsEnum) return Activator.CreateInstance(type); // 枚举的默认值
+
+            // 对于引用类型，返回null
+            if (!type.IsValueType)
+                return null;
+
+            // 对于其他值类型，返回默认实例
+            return Activator.CreateInstance(type);
+        }
+
+        /// <summary>
+        /// 创建新节点数据并自动初始化自定义数据
+        /// </summary>
+        public static NodeData Create(NodeType type,Type classType, Vector2 pos)
+        {
+            var nodeData = new NodeData
             {
                 guid = Guid.NewGuid().ToString(),
                 nodeType = type,
-                nodeClassName = className,
-                nodeName = className.Replace("Node", ""),
+                nodeClassName = classType.Name,
+                nodeClassType = classType,
+                nodeName = classType.Name.Replace("Node", ""),
                 position = pos,
                 nodeState = NodeState.Invalid
             };
+
+            // 自动初始化自定义数据
+            nodeData.InitCustomDataByNodeType();
+
+            return nodeData;
         }
 
         /// <summary>
@@ -121,7 +279,7 @@ namespace BehaviorTreeEditor.Runtime.Data
                 nodeState = NodeState.Invalid,
                 abortType = this.abortType,
                 description = this.description,
-                customDataJson = this.customDataJson
+                customData = this.customData.Clone()
             };
         }
     }

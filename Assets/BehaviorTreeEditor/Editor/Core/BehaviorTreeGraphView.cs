@@ -71,7 +71,7 @@ namespace BehaviorTreeEditor.Editor.Core
             else if (attr.Category.Contains("Decorator")) dataType = NodeType.Decorator;
             else if (attr.Category.Contains("Condition")) dataType = NodeType.Condition;
 
-            var nodeData = NodeData.Create(dataType, nodeType.Name, position);
+            var nodeData = NodeData.Create(dataType, nodeType, position);
             nodeData.nodeName = attr.DisplayName;
             nodeData.description = attr.Description;
 

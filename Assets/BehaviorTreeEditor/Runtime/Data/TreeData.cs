@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
+using BehaviorTreeEditor.Runtime.Core;
 
 namespace BehaviorTreeEditor.Runtime.Data
 {
@@ -194,7 +195,7 @@ namespace BehaviorTreeEditor.Runtime.Data
             };
 
             // 创建根节点
-            var rootNode = NodeData.Create(NodeType.Root, "RootNode", Vector2.zero);
+            var rootNode = NodeData.Create(NodeType.Root, typeof(RootNode), Vector2.zero);
             treeData.AddNode(rootNode);
             treeData.rootNodeGuid = rootNode.guid;
 

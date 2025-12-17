@@ -354,7 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7275043458b7bd746865f9ad7c4cc25d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviorTreeAsset: {fileID: 11400000, guid: a1dcef5c19489964ab74e519ec348c75, type: 2}
+  behaviorTreeAsset: {fileID: 11400000, guid: 46f23e3a53f1b1945b432ebc4c72e5b4, type: 2}
   autoRun: 1
   updateMode: 0
 --- !u!1660057539 &9223372036854775807

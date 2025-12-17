@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using BehaviorTreeEditor.Runtime.Data;
 
@@ -45,6 +46,120 @@ namespace BehaviorTreeEditor.Runtime.Core
             Tree = tree;
             State = NodeState.Invalid;
             isStarted = false;
+
+            // 初始化字段值
+            InitializeFieldsFromCustomData();
+        }
+
+        /// <summary>
+        /// 从CustomData初始化字段值
+        /// </summary>
+        protected virtual void InitializeFieldsFromCustomData()
+        {
+            if (NodeData?.customData == null)
+                return;
+
+            Type nodeType = this.GetType();
+            FieldInfo[] fields = nodeType.GetFields(BindingFlags.Public | BindingFlags.Instance);
+
+            foreach (FieldInfo field in fields)
+            {
+                // 跳过某些不需要的字段
+                if (ShouldSkipFieldForInitialization(field))
+                    continue;
+
+                // 检查customData中是否有对应的变量
+                if (NodeData.customData.HasVariable(field.Name))
+                {
+                    try
+                    {
+                        // 获取黑板中的值
+                        object value = GetBlackboardValueForField(field);
+                        
+                        if (value != null)
+                        {
+                            // 设置字段值
+                            field.SetValue(this, value);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogError($"[BTNode] Failed to initialize field '{field.Name}' for node {nodeType.Name}: {ex.Message}");
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 判断是否应该跳过字段初始化
+        /// </summary>
+        private bool ShouldSkipFieldForInitialization(FieldInfo field)
+        {
+            // 跳过只读字段
+            if (field.IsInitOnly)
+                return true;
+
+            // 跳过某些特定名称的字段
+            string[] skipFields = { "Children", "Parent", "Tree", "NodeData", "State", "isStarted" };
+            if (Array.Exists(skipFields, name => string.Equals(name, field.Name, StringComparison.OrdinalIgnoreCase)))
+                return true;
+
+            // 跳过委托类型
+            if (field.FieldType.IsSubclassOf(typeof(Delegate)))
+                return true;
+
+            return false;
+        }
+
+        /// <summary>
+        /// 从黑板获取字段对应的值
+        /// </summary>
+        private object GetBlackboardValueForField(FieldInfo field)
+        {
+            Type fieldType = field.FieldType;
+            
+            // 处理可空类型
+            if (fieldType.IsGenericType && fieldType.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                fieldType = Nullable.GetUnderlyingType(fieldType);
+            }
+
+            // 使用反射调用泛型方法
+            MethodInfo method = typeof(BlackboardData).GetMethod("GetValue");
+            MethodInfo genericMethod = method.MakeGenericMethod(fieldType);
+            
+            return genericMethod.Invoke(NodeData.customData, new object[] { field.Name });
+        }
+
+        /// <summary>
+        /// 将字段值同步回CustomData（用于运行时修改字段值后同步到数据）
+        /// </summary>
+        protected virtual void SyncFieldsToCustomData()
+        {
+            if (NodeData?.customData == null)
+                return;
+
+            Type nodeType = this.GetType();
+            FieldInfo[] fields = nodeType.GetFields(BindingFlags.Public | BindingFlags.Instance);
+
+            foreach (FieldInfo field in fields)
+            {
+                if (ShouldSkipFieldForInitialization(field))
+                    continue;
+
+                if (NodeData.customData.HasVariable(field.Name))
+                {
+                    try
+                    {
+                        object currentValue = field.GetValue(this);
+                        NodeData.customData.SetValue(field.Name, currentValue);
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogError($"[BTNode] Failed to sync field '{field.Name}' to custom data: {ex.Message}");
+                    }
+                }
+            }
         }
 
         /// <summary>

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe99de081b0f89c40b6b01a1fa09049c, type: 3}
-  m_Name: NewBehaviorTree
+  m_Name: TestWait2Second
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -32,7 +32,7 @@ MonoBehaviour:
       Data: 
     - Name: rootNodeGuid
       Entry: 1
-      Data: 4b157ad7-e527-49b0-bac7-33c4bad755c1
+      Data: 639979bb-b2bc-4275-a68d-556255e7b22d
     - Name: allNodes
       Entry: 7
       Data: 1|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[BehaviorTreeEditor.Runtime.Data.NodeData,
@@ -46,19 +46,19 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 5
+      Data: 4
     - Name: 
       Entry: 7
       Data: 
     - Name: $k
       Entry: 1
-      Data: 4b157ad7-e527-49b0-bac7-33c4bad755c1
+      Data: 639979bb-b2bc-4275-a68d-556255e7b22d
     - Name: $v
       Entry: 7
       Data: 3|BehaviorTreeEditor.Runtime.Data.NodeData, Assembly-CSharp
     - Name: guid
       Entry: 1
-      Data: 4b157ad7-e527-49b0-bac7-33c4bad755c1
+      Data: 639979bb-b2bc-4275-a68d-556255e7b22d
     - Name: nodeType
       Entry: 3
       Data: 0
@@ -69,29 +69,35 @@ MonoBehaviour:
       Entry: 1
       Data: RootNode
     - Name: nodeClassType
-      Entry: 6
+      Entry: 7
+      Data: 4|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BehaviorTreeEditor.Runtime.Core.RootNode, Assembly-CSharp
+    - Name: 
+      Entry: 8
       Data: 
     - Name: position
       Entry: 7
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 256
+      Data: 637
     - Name: 
       Entry: 4
-      Data: -260.5
+      Data: 96
     - Name: 
       Entry: 8
       Data: 
     - Name: childrenGuids
       Entry: 7
-      Data: 4|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+      Data: 5|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 1
-      Data: 25e466a3-b198-4232-8051-41bf8a2a24e6
+      Data: 777c29c6-2575-4a8f-a9a7-045fe21b6227
     - Name: 
       Entry: 13
       Data: 
@@ -111,86 +117,11 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: customData
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
       Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: 25e466a3-b198-4232-8051-41bf8a2a24e6
-    - Name: $v
-      Entry: 7
-      Data: 5|BehaviorTreeEditor.Runtime.Data.NodeData, Assembly-CSharp
-    - Name: guid
-      Entry: 1
-      Data: 25e466a3-b198-4232-8051-41bf8a2a24e6
-    - Name: nodeType
-      Entry: 3
-      Data: 1
-    - Name: nodeName
-      Entry: 1
-      Data: Sequence
-    - Name: nodeClassName
-      Entry: 1
-      Data: SequenceNode
-    - Name: nodeClassType
-      Entry: 6
-      Data: 
-    - Name: position
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 231
-    - Name: 
-      Entry: 4
-      Data: -20
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: childrenGuids
-      Entry: 7
-      Data: 6|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 1
-      Data: 3884df14-b0b5-4202-8bee-f7cec28cfa00
-    - Name: 
-      Entry: 1
-      Data: 9a02cebe-4bb8-42a8-b748-d1bf52125e3e
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: parentGuid
-      Entry: 1
-      Data: 4b157ad7-e527-49b0-bac7-33c4bad755c1
-    - Name: nodeState
-      Entry: 3
-      Data: 0
-    - Name: abortType
-      Entry: 3
-      Data: 0
-    - Name: description
-      Entry: 1
-      Data: "\u987A\u5E8F\u6267\u884C\u6240\u6709\u5B50\u8282\u70B9\uFF0C\u5168\u90E8\u6210\u529F\u624D\u8FD4\u56DESuccess"
-    - Name: customData
-      Entry: 7
-      Data: 7|BehaviorTreeEditor.Runtime.Data.BlackboardData, Assembly-CSharp
+      Data: 6|BehaviorTreeEditor.Runtime.Data.BlackboardData, Assembly-CSharp
     - Name: variables
       Entry: 7
-      Data: 8|System.Collections.Generic.List`1[[BehaviorTreeEditor.Runtime.Data.BlackboardVariable,
+      Data: 7|System.Collections.Generic.List`1[[BehaviorTreeEditor.Runtime.Data.BlackboardVariable,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -215,34 +146,40 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 1
-      Data: 9a02cebe-4bb8-42a8-b748-d1bf52125e3e
+      Data: 777c29c6-2575-4a8f-a9a7-045fe21b6227
     - Name: $v
       Entry: 7
-      Data: 9|BehaviorTreeEditor.Runtime.Data.NodeData, Assembly-CSharp
+      Data: 8|BehaviorTreeEditor.Runtime.Data.NodeData, Assembly-CSharp
     - Name: guid
       Entry: 1
-      Data: 9a02cebe-4bb8-42a8-b748-d1bf52125e3e
+      Data: 777c29c6-2575-4a8f-a9a7-045fe21b6227
     - Name: nodeType
       Entry: 3
-      Data: 3
+      Data: 1
     - Name: nodeName
       Entry: 1
-      Data: Wait
+      Data: Sequence
     - Name: nodeClassName
       Entry: 1
-      Data: WaitNode
+      Data: SequenceNode
     - Name: nodeClassType
-      Entry: 6
+      Entry: 7
+      Data: 9|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BehaviorTreeEditor.Runtime.Nodes.Composites.SequenceNode, Assembly-CSharp
+    - Name: 
+      Entry: 8
       Data: 
     - Name: position
       Entry: 7
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 414
+      Data: 629
     - Name: 
       Entry: 4
-      Data: 220.5
+      Data: 212
     - Name: 
       Entry: 8
       Data: 
@@ -251,7 +188,13 @@ MonoBehaviour:
       Data: 10|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 123d6cda-26cb-4de5-9ffa-daff37587e93
+    - Name: 
+      Entry: 1
+      Data: 061ffb67-5ec5-43e5-a06c-5f11453c21a0
     - Name: 
       Entry: 13
       Data: 
@@ -260,7 +203,7 @@ MonoBehaviour:
       Data: 
     - Name: parentGuid
       Entry: 1
-      Data: 25e466a3-b198-4232-8051-41bf8a2a24e6
+      Data: 639979bb-b2bc-4275-a68d-556255e7b22d
     - Name: nodeState
       Entry: 3
       Data: 0
@@ -269,7 +212,7 @@ MonoBehaviour:
       Data: 0
     - Name: description
       Entry: 1
-      Data: "\u7B49\u5F85\u6307\u5B9A\u79D2\u6570"
+      Data: "\u987A\u5E8F\u6267\u884C\u6240\u6709\u5B50\u8282\u70B9\uFF0C\u5168\u90E8\u6210\u529F\u624D\u8FD4\u56DESuccess"
     - Name: customData
       Entry: 7
       Data: 11|BehaviorTreeEditor.Runtime.Data.BlackboardData, Assembly-CSharp
@@ -300,98 +243,13 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 1
-      Data: 3884df14-b0b5-4202-8bee-f7cec28cfa00
+      Data: 123d6cda-26cb-4de5-9ffa-daff37587e93
     - Name: $v
       Entry: 7
       Data: 13|BehaviorTreeEditor.Runtime.Data.NodeData, Assembly-CSharp
     - Name: guid
       Entry: 1
-      Data: 3884df14-b0b5-4202-8bee-f7cec28cfa00
-    - Name: nodeType
-      Entry: 3
-      Data: 3
-    - Name: nodeName
-      Entry: 1
-      Data: Log
-    - Name: nodeClassName
-      Entry: 1
-      Data: LogNode
-    - Name: nodeClassType
-      Entry: 6
-      Data: 
-    - Name: position
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 81
-    - Name: 
-      Entry: 4
-      Data: 193.5
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: childrenGuids
-      Entry: 7
-      Data: 14|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: parentGuid
-      Entry: 1
-      Data: 25e466a3-b198-4232-8051-41bf8a2a24e6
-    - Name: nodeState
-      Entry: 3
-      Data: 0
-    - Name: abortType
-      Entry: 3
-      Data: 0
-    - Name: description
-      Entry: 1
-      Data: "\u8F93\u51FA\u65E5\u5FD7\u4FE1\u606F\u5230Console"
-    - Name: customData
-      Entry: 7
-      Data: 15|BehaviorTreeEditor.Runtime.Data.BlackboardData, Assembly-CSharp
-    - Name: variables
-      Entry: 7
-      Data: 16|System.Collections.Generic.List`1[[BehaviorTreeEditor.Runtime.Data.BlackboardVariable,
-        Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: fde61fde-8194-45ad-9f7e-ab9063af8f06
-    - Name: $v
-      Entry: 7
-      Data: 17|BehaviorTreeEditor.Runtime.Data.NodeData, Assembly-CSharp
-    - Name: guid
-      Entry: 1
-      Data: fde61fde-8194-45ad-9f7e-ab9063af8f06
+      Data: 123d6cda-26cb-4de5-9ffa-daff37587e93
     - Name: nodeType
       Entry: 3
       Data: 3
@@ -403,7 +261,7 @@ MonoBehaviour:
       Data: WaitNode
     - Name: nodeClassType
       Entry: 7
-      Data: 18|System.RuntimeType, mscorlib
+      Data: 14|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: BehaviorTreeEditor.Runtime.Nodes.Actions.WaitNode, Assembly-CSharp
@@ -415,16 +273,16 @@ MonoBehaviour:
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 127.5
+      Data: 488
     - Name: 
       Entry: 4
-      Data: 432
+      Data: 428
     - Name: 
       Entry: 8
       Data: 
     - Name: childrenGuids
       Entry: 7
-      Data: 19|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+      Data: 15|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -435,8 +293,8 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: parentGuid
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: 777c29c6-2575-4a8f-a9a7-045fe21b6227
     - Name: nodeState
       Entry: 3
       Data: 0
@@ -448,17 +306,17 @@ MonoBehaviour:
       Data: "\u7B49\u5F85\u6307\u5B9A\u79D2\u6570"
     - Name: customData
       Entry: 7
-      Data: 20|BehaviorTreeEditor.Runtime.Data.BlackboardData, Assembly-CSharp
+      Data: 16|BehaviorTreeEditor.Runtime.Data.BlackboardData, Assembly-CSharp
     - Name: variables
       Entry: 7
-      Data: 21|System.Collections.Generic.List`1[[BehaviorTreeEditor.Runtime.Data.BlackboardVariable,
+      Data: 17|System.Collections.Generic.List`1[[BehaviorTreeEditor.Runtime.Data.BlackboardVariable,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 3
     - Name: 
       Entry: 7
-      Data: 22|BehaviorTreeEditor.Runtime.Data.BlackboardVariable, Assembly-CSharp
+      Data: 18|BehaviorTreeEditor.Runtime.Data.BlackboardVariable, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: waitTime
@@ -470,7 +328,7 @@ MonoBehaviour:
       Data: 0
     - Name: floatValue
       Entry: 4
-      Data: 0
+      Data: 2
     - Name: boolValue
       Entry: 5
       Data: false
@@ -518,7 +376,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 23|BehaviorTreeEditor.Runtime.Data.BlackboardVariable, Assembly-CSharp
+      Data: 19|BehaviorTreeEditor.Runtime.Data.BlackboardVariable, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: useBlackboard
@@ -578,7 +436,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 24|BehaviorTreeEditor.Runtime.Data.BlackboardVariable, Assembly-CSharp
+      Data: 20|BehaviorTreeEditor.Runtime.Data.BlackboardVariable, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: blackboardKey
@@ -652,6 +510,217 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: 061ffb67-5ec5-43e5-a06c-5f11453c21a0
+    - Name: $v
+      Entry: 7
+      Data: 21|BehaviorTreeEditor.Runtime.Data.NodeData, Assembly-CSharp
+    - Name: guid
+      Entry: 1
+      Data: 061ffb67-5ec5-43e5-a06c-5f11453c21a0
+    - Name: nodeType
+      Entry: 3
+      Data: 3
+    - Name: nodeName
+      Entry: 1
+      Data: Log
+    - Name: nodeClassName
+      Entry: 1
+      Data: LogNode
+    - Name: nodeClassType
+      Entry: 7
+      Data: 22|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BehaviorTreeEditor.Runtime.Nodes.Actions.LogNode, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: position
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 829
+    - Name: 
+      Entry: 4
+      Data: 428
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: childrenGuids
+      Entry: 7
+      Data: 23|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: parentGuid
+      Entry: 1
+      Data: 777c29c6-2575-4a8f-a9a7-045fe21b6227
+    - Name: nodeState
+      Entry: 3
+      Data: 0
+    - Name: abortType
+      Entry: 3
+      Data: 0
+    - Name: description
+      Entry: 1
+      Data: "\u8F93\u51FA\u65E5\u5FD7\u4FE1\u606F\u5230Console"
+    - Name: customData
+      Entry: 7
+      Data: 24|BehaviorTreeEditor.Runtime.Data.BlackboardData, Assembly-CSharp
+    - Name: variables
+      Entry: 7
+      Data: 25|System.Collections.Generic.List`1[[BehaviorTreeEditor.Runtime.Data.BlackboardVariable,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 26|BehaviorTreeEditor.Runtime.Data.BlackboardVariable, Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: logType
+    - Name: valueType
+      Entry: 3
+      Data: 0
+    - Name: intValue
+      Entry: 3
+      Data: 0
+    - Name: floatValue
+      Entry: 4
+      Data: 0
+    - Name: boolValue
+      Entry: 5
+      Data: false
+    - Name: stringValue
+      Entry: 6
+      Data: 
+    - Name: vector2Value
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: vector3Value
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: gameObjectValue
+      Entry: 6
+      Data: 
+    - Name: transformValue
+      Entry: 6
+      Data: 
+    - Name: objectValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 27|BehaviorTreeEditor.Runtime.Data.BlackboardVariable, Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: message
+    - Name: valueType
+      Entry: 3
+      Data: 3
+    - Name: intValue
+      Entry: 3
+      Data: 0
+    - Name: floatValue
+      Entry: 4
+      Data: 0
+    - Name: boolValue
+      Entry: 5
+      Data: false
+    - Name: stringValue
+      Entry: 1
+      Data: "\u6211\u662FCheer"
+    - Name: vector2Value
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: vector3Value
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: gameObjectValue
+      Entry: 6
+      Data: 
+    - Name: transformValue
+      Entry: 6
+      Data: 
+    - Name: objectValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
@@ -659,10 +728,10 @@ MonoBehaviour:
       Data: 
     - Name: createTime
       Entry: 1
-      Data: 2025-12-16 17:08:36
+      Data: 2025-12-17 16:14:08
     - Name: lastModifyTime
       Entry: 1
-      Data: 2025-12-16 17:09:17
+      Data: 2025-12-17 16:14:08
     - Name: 
       Entry: 8
       Data: 
