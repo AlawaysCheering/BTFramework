@@ -9,6 +9,7 @@ namespace Framework.Common.Blackboard
         And,
         Or
     }
+    [Serializable]
     public class BlackboardConditionOperator
     {
         public BlackboardConditionOperatorType type;

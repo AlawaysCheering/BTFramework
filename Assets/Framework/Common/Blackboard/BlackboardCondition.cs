@@ -12,6 +12,7 @@ namespace Framework.Common.Blackboard
         Equal,
         NotEqual,
     }
+    [Serializable]
     public class BlackboardCondition 
     {
         public string key;

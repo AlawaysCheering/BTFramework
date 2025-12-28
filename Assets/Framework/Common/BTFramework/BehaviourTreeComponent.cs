@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BehaviourTreeComponent : MonoBehaviour
+namespace Framework.Common.BehaviourTree
 {
-    // Start is called before the first frame update
-    void Start()
+    public class BehaviourTreeComponent : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private BehaviourTreeExecutor behaviourTreeExecutor;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Awake()
+        {
+            behaviourTreeExecutor.Init();
+            behaviourTreeExecutor.Tick(0);
+        }
+        private void Update()
+        {
+            behaviourTreeExecutor.Tick(Time.deltaTime);
+        }
+        private void OnDestroy()
+        {
+            behaviourTreeExecutor.Destory();
+        }
     }
 }
+

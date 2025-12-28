@@ -1,0 +1,29 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Framework/Common/BTFramework/Editor/UI/BehaviourTreeNodeView.uss?fileID=7433441132597879392&amp;guid=182461e22adf87742b134a97ae10e5f8&amp;type=3#BehaviourTreeNodeView" />
+    <engine:VisualElement name="node-state" style="flex-grow: 1; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" />
+    <engine:VisualElement name="selection-border" picking-mode="Ignore" style="flex-grow: 0; position: absolute; top: 0; left: 0; right: 0; bottom: 0;" />
+    <engine:VisualElement name="node-border" style="flex-grow: 0;">
+        <engine:VisualElement name="contents" style="flex-grow: 0;">
+            <engine:VisualElement name="input" style="color: rgb(165, 165, 165);">
+                <engine:Label tabindex="-1" text="X" parse-escape-sequences="true" display-tooltip-when-elided="true" name="aborted" focusable="false" style="position: absolute; font-size: 24px; color: rgb(221, 65, 65); right: 8px; display: none; -unity-font-style: bold;" />
+            </engine:VisualElement>
+            <engine:VisualElement name="divider" class="horizontal" />
+            <engine:VisualElement name="horizontal-layout" style="flex-grow: 1; flex-direction: row;">
+                <engine:Label tabindex="-1" text="1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="executeOrder" style="color: rgb(255, 255, 255); -unity-font-style: bold; flex-grow: 0; flex-shrink: 1; -unity-text-align: middle-center; font-size: 14px; min-width: 30px; margin-right: 0; padding-right: 1px;" />
+                <engine:VisualElement name="vertical-layout" style="flex-grow: 1;">
+                    <engine:VisualElement name="title">
+                        <engine:Label name="title-label" class="unity-text-element unity-label" style="align-self: auto; align-items: auto; -unity-text-align: upper-center; -unity-font-style: bold; color: rgb(255, 255, 255); padding-right: 1px; max-width: 200px; white-space: normal;" />
+                        <engine:VisualElement name="title-button-container" style="background-color: rgba(0, 0, 0, 0);">
+                            <engine:VisualElement name="collapse-button">
+                                <engine:VisualElement name="icon" />
+                            </engine:VisualElement>
+                        </engine:VisualElement>
+                    </engine:VisualElement>
+                    <engine:Label tabindex="-1" text="This is a description" parse-escape-sequences="true" display-tooltip-when-elided="true" name="description" enable-rich-text="true" style="-unity-text-align: upper-center; font-size: 10px; padding-right: 1px; flex-wrap: nowrap; white-space: normal; max-width: 200px; max-height: none; text-overflow: clip;" />
+                </engine:VisualElement>
+            </engine:VisualElement>
+            <engine:VisualElement name="divider" class="vertical" />
+            <engine:VisualElement name="output" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

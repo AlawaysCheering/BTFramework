@@ -1,54 +1,47 @@
-using Framework.Core.Attribute;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+
 namespace Framework.Common.BehaviourTree.Node.Decorator
 {
-    public class TimeDelayNode : DecoratorNode
+    [NodeMenuItem("Decorator/Fixed Delay")]
+    public class FixedDelayNode : DecoratorNode
     {
         [SerializeField] private float delayTime = 1f;
         [SerializeField] private bool recordTimeAfterAbort = false;
-
-        private float _abortTime;
-        private float _time;
+        public override string Description => "延迟固定时间执行节点，不受时间缩放影响";
+        private float _startTime;
         private float _duration;
-
-        public override string Description => "延迟时间执行节点，受时间缩放影响";
-
-        protected override void OnStart(object payload)
-        {
-            _time = 0f;
-            _duration = delayTime;
-        }
 
         protected override void OnAbort(object payload)
         {
             base.OnAbort(payload);
+            _duration -=Time.unscaledTime - _startTime;
             if (recordTimeAfterAbort)
             {
-                _abortTime = Tree.Time;
+                _startTime = Time.unscaledTime;
             }
         }
         protected override void OnResume(object payload)
         {
-            if (recordTimeAfterAbort)
+            if(recordTimeAfterAbort)
             {
-                _time += Tree.Time - _abortTime;//把被打断到复苏的时间也加上
+                _duration -=Time.unscaledTime - _startTime;
             }
+            _startTime = Time.unscaledTime;
+        }
+        protected override void OnStart(object payload)
+        {
+            _startTime = Time.unscaledTime;
+            _duration = delayTime;
         }
 
         protected override NodeState OnTick(float deltaTime, object payload)
         {
-            _time += deltaTime;
-            if (_time >= _duration)
+            if (Time.unscaledTime - _startTime >= _duration)
             {
                 return child.Tick(deltaTime, payload);
             }
             return NodeState.Running;
         }
-
-
     }
 }
-
-
