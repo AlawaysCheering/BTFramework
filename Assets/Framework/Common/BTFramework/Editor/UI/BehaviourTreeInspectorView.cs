@@ -9,7 +9,7 @@ namespace Framework.Common.BehaviourTree.Editor.UI
         public new class UXmlFactory : UxmlFactory<BehaviourTreeInspectorView, VisualElement.UxmlTraits>
         {
         }
-        //自定义NodeEditor
+
         private UnityEditor.Editor _nodeEditor;
 
         public BehaviourTreeInspectorView()
@@ -20,12 +20,13 @@ namespace Framework.Common.BehaviourTree.Editor.UI
         {
             ClearNode();
 
+            // 使用节点Editor渲染内容
             var scrollView = new ScrollView();
-            _nodeEditor = UnityEditor.Editor.CreateEditor(nodeView.Node);//使用默认对象编辑GUI绘制
-            //混合使用IMGUI UIToolkit
+            _nodeEditor = UnityEditor.Editor.CreateEditor(nodeView.Node);
             var container = new IMGUIContainer(() =>
             {
-                if (_nodeEditor != null&&_nodeEditor.target)
+                // EditorGUILayout.ObjectField(nodeView.Node, typeof(Node.Node));
+                if (_nodeEditor != null && _nodeEditor.target)
                 {
                     _nodeEditor.OnInspectorGUI();
                 }
@@ -33,6 +34,7 @@ namespace Framework.Common.BehaviourTree.Editor.UI
             scrollView.Add(container);
             Add(scrollView);
         }
+
         internal void HandleNodeUnselected(BehaviourTreeNodeView nodeView)
         {
             if (_nodeEditor.target == nodeView.Node)
@@ -40,6 +42,7 @@ namespace Framework.Common.BehaviourTree.Editor.UI
                 ClearNode();
             }
         }
+
         private void ClearNode()
         {
             Clear();

@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-565217863322595213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0a302f0180e4ae4480957af9c392f57, type: 3}
+  m_Name: Blackboard
+  m_EditorClassIdentifier: 
+  parameters: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61bd8babd99817746808d69ec62479d6, type: 3}
+  m_Name: New Behaviour Tree
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: 9201641491496382685}
+  treeState: 0
+  nodes:
+  - {fileID: 0}
+  - {fileID: 9201641491496382685}
+  - {fileID: 294915829584506936}
+  blackboard: {fileID: -565217863322595213}
+--- !u!114 &294915829584506936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f871ba54f03864492ecb7bc7ee9966, type: 3}
+  m_Name: BlackboardConditionNode
+  m_EditorClassIdentifier: 
+  guid: fcfef5018b9608a49b98568b36d55bc9
+  position: {x: 175.33334, y: 20.666664}
+  executeOrder: 1
+  comment: 
+  blackboard: {fileID: -565217863322595213}
+  stopWhenAbort: 1
+  debugLifecycle: 0
+  debugTime: 0
+  conditions: []
+--- !u!114 &9201641491496382685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88bb0f97d8373da4c81310f3d2d77368, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  guid: 8960086fe0678f24a9a1c1565a6c7e0d
+  position: {x: 0, y: 0}
+  executeOrder: 1
+  comment: 
+  blackboard: {fileID: -565217863322595213}
+  stopWhenAbort: 1
+  debugLifecycle: 0
+  debugTime: 0
+  child: {fileID: 0}

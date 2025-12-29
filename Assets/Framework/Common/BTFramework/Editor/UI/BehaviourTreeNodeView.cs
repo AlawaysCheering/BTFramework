@@ -2,9 +2,7 @@ using Framework.Common.BehaviourTree.Node;
 using Framework.Common.BehaviourTree.Node.Action;
 using Framework.Common.BehaviourTree.Node.Composite;
 using Framework.Common.BehaviourTree.Node.Decorator;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Framework.Common.Debug;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
@@ -19,12 +17,13 @@ namespace Framework.Common.BehaviourTree.Editor.UI
         public readonly Port Input;
         public readonly Port Output;
 
-        public Action<BehaviourTreeNodeView> OnNodeSelected;
-        public Action<BehaviourTreeNodeView> OnNodeUnselected;
+        public System.Action<BehaviourTreeNodeView> OnNodeSelected;
+        public System.Action<BehaviourTreeNodeView> OnNodeUnselected;
 
         private readonly Label _labelAborted;
 
-        public BehaviourTreeNodeView(Node.Node node) : base("Assets/Framework/Common/BehaviourTree/Editor/UI/BehaviourTreeNodeView.uxml")
+        public BehaviourTreeNodeView(Node.Node node) : base(
+            "Assets/Framework/Common/BTFramework/Editor/UI/BehaviourTreeNodeView.uxml")
         {
             Node = node;
             title = node.name;
@@ -32,39 +31,56 @@ namespace Framework.Common.BehaviourTree.Editor.UI
             style.left = node.position.x;
             style.top = node.position.y;
 
-            //数据映射与绑定
+            // 双向绑定
             var labelDescription = mainContainer.Q<Label>("description");
             var labelExecuteOrder = mainContainer.Q<Label>("executeOrder");
             _labelAborted = mainContainer.Q<Label>("aborted");
             labelDescription.text = node.Description;
             labelExecuteOrder.bindingPath = "executeOrder";
-            labelExecuteOrder.Bind(new UnityEditor.SerializedObject(node));
+            labelExecuteOrder.Bind(new SerializedObject(node));
 
-            //输入端口
-            if (Node is not RootNode)
+            #region 创建输入端口
+
+            switch (Node)
             {
-                Input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
+                case RootNode:
+                    break;
+                default:
+                    Input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
+                    break;
+            }
+
+            if (Input != null)
+            {
                 Input.portName = "";
                 Input.style.flexDirection = FlexDirection.Column;
                 inputContainer.Add(Input);
             }
 
+            #endregion
+
+            #region 创建输出端口
+
             switch (Node)
             {
                 case RootNode rootNode:
                 case DecoratorNode decoratorNode:
-                    Output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, typeof(bool));
+                    Output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single,
+                        typeof(bool));
                     break;
                 case CompositeNode compositeNode:
                     Output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Multi, typeof(bool));
                     break;
             }
+
             if (Output != null)
             {
                 Output.portName = "";
-                Output.style.flexDirection = FlexDirection.Column;
+                Output.style.flexDirection = FlexDirection.ColumnReverse;
                 outputContainer.Add(Output);
             }
+
+            #endregion
 
             SetupClasses();
         }
@@ -80,12 +96,13 @@ namespace Framework.Common.BehaviourTree.Editor.UI
         public override void OnSelected()
         {
             base.OnSelected();
-            OnNodeSelected.Invoke(this);
+            OnNodeSelected?.Invoke(this);
         }
-        public override void Unselect(VisualElement selectionContainer)
+
+        public override void OnUnselected()
         {
-            base.Unselect(selectionContainer);
-            OnNodeUnselected.Invoke(this);
+            base.OnUnselected();
+            OnNodeUnselected?.Invoke(this);
         }
 
         internal void SortChildren()
@@ -93,13 +110,12 @@ namespace Framework.Common.BehaviourTree.Editor.UI
             if (Node is CompositeNode compositeNode)
             {
                 compositeNode.children.Sort((leftNode, rightNode) =>
+                    leftNode.position.x <= rightNode.position.x ? -1 : 1);
+                // 子节点执行顺序重新设置
+                for (var i = 0; i < compositeNode.children.Count; i++)
                 {
-                    return leftNode.position.x <= rightNode.position.x ? -1 : 1;
-                });
-                for (int i = 0; i < compositeNode.children.Count; i++)
-                {
-                    var child = compositeNode.children[i];
-                    child.executeOrder = i + 1;
+                    var childNode = compositeNode.children[i];
+                    childNode.executeOrder = i + 1;
                 }
             }
         }
@@ -121,6 +137,7 @@ namespace Framework.Common.BehaviourTree.Editor.UI
                         {
                             return;
                         }
+
                         AddToClassList("running");
                         break;
                     case NodeState.Success:

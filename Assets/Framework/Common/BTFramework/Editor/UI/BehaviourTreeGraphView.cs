@@ -73,7 +73,8 @@ namespace Framework.Common.BehaviourTree.Editor.UI
 
             // 4. 加载样式表
             var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>(
-                "Assets/Framework/Common/BehaviourTree/Editor/BehaviourTreeEditorWindow.uss");
+                "Assets/Framework/Common/BTFramework/Editor/BehaviourTreeEditorWindow.uss");
+            if(styleSheet != null )
             styleSheets.Add(styleSheet);
 
             // 注册撤销重做回调

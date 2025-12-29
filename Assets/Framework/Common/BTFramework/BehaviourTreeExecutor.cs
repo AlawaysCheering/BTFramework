@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Framework.Common.BehaviourTree
 {
-    public class BehaviourTreeExecutor
+    public class BehaviourTreeExecutor : MonoBehaviour
     {
         [SerializeField] private BehaviourTree treeTemplate;//Ô¤ÉèÊ÷
 

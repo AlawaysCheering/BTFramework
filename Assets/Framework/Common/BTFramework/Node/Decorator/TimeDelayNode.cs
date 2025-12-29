@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Framework.Common.BehaviourTree.Node.Decorator
 {
+    [NodeMenuItem("Decorator/Time Delay")]
     public class TimeDelayNode : DecoratorNode
     {
         [SerializeField] private float delayTime = 1f;

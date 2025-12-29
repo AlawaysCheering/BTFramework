@@ -44,7 +44,7 @@ namespace Framework.Common.Blackboard
             var findIndex = parameters.FindIndex(_variable => _variable.key==variable.key&&_variable.type==variable.type);
             if (findIndex == -1)
             {
-                UnityEngine.Debug.LogWarning($"Variable {variable.key} is not already existed");
+                UnityEngine.Debug.LogWarning($"Variable {variable.key} is not existed");
                 return;
             }
             switch (variable.type)

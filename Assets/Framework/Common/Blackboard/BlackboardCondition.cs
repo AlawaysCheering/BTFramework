@@ -1,4 +1,3 @@
-using Sirenix.OdinValidator.Editor;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,8 +11,9 @@ namespace Framework.Common.Blackboard
         Equal,
         NotEqual,
     }
+
     [Serializable]
-    public class BlackboardCondition 
+    public class BlackboardCondition
     {
         public string key;
         public BlackboardVariableType type;
@@ -22,10 +22,15 @@ namespace Framework.Common.Blackboard
         public float floatCondition;
         public bool boolCondition;
         public string stringCondition;
-        public bool matchVariable;//该字段仅在BlackboardConditionDrawer使用
+        public bool matchVariable; // 该字段仅在BlackboardConditionDrawer使用
+
         public virtual bool Satisfy(Blackboard blackboard)
         {
-            if (!blackboard.ContainsParameter(key)) return true;
+            // 没有匹配到的参数不影响条件判断
+            if (!blackboard.ContainsParameter(key))
+            {
+                return true;
+            }
 
             switch (type)
             {
@@ -37,7 +42,7 @@ namespace Framework.Common.Blackboard
                         BlackboardConditionComparison.Less => intValue < intCondition,
                         BlackboardConditionComparison.Equal => intValue == intCondition,
                         BlackboardConditionComparison.NotEqual => intValue != intCondition,
-                        _=>false
+                        _ => false,
                     };
                 case BlackboardVariableType.Float:
                     var floatValue = blackboard.GetFloatParameter(key);
@@ -53,7 +58,7 @@ namespace Framework.Common.Blackboard
                     var booleanValue = blackboard.GetBoolParameter(key);
                     return booleanValue == boolCondition;
                 case BlackboardVariableType.String:
-                    var stringValue =blackboard.GetStringParameter(key);
+                    var stringValue = blackboard.GetStringParameter(key);
                     return comparison switch
                     {
                         BlackboardConditionComparison.Equal => stringValue == stringCondition,
@@ -61,6 +66,7 @@ namespace Framework.Common.Blackboard
                         _ => false,
                     };
             }
+
             return false;
         }
     }
